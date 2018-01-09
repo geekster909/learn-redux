@@ -6,18 +6,24 @@ import css from './styles/style.styl';
 
 //import componenets
 import Main from './components/Main';
+import Single from './components/Single';
+import PhotoGrid from './components/PhotoGrid';
 
-class Reduxstagram extends Component {
-	render() {
-		return (
-			<div>
-				<p>Hi</p>
-			</div>
-		);
-	}
-}
+// import react router deps
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+
+const router = (
+	<Router history={browserHistory}>
+		<Route path="/" component={Main}>
+			<IndexRoute component={PhotoGrid}></IndexRoute>
+			<Router path="/view/:postId" component={Single}></Router>
+		</Route>
+	</Router>
+)
+
+
 
 render(
-	<Main />,
+	router,
 	document.getElementById('root')
 );
